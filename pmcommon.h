@@ -17,8 +17,14 @@ struct pm_dir {
 	struct pm_name name;
 };
 
+struct pm_image *pm_newImage(int width, int height);
+struct pm_image *pm_loadPng(const char *pngfile);
 struct pm_image *pm_loadImage(const char *shapefile, int index);
 void pm_freeImage(struct pm_image *img);
+
+int pm_appendToDirectory(const char *sdr_file, const char *shp_file, struct pm_image *image, char *name);
+
+void pm_displayImage(struct pm_image *img);
 
 struct pm_dir *pm_openDir(const char *shapeDirFile);
 int pm_readDirEntry(struct pm_dir *pmdir);

@@ -2,25 +2,6 @@
 #include <stdlib.h>
 #include "pmcommon.h"
 
-static void displayImage(struct pm_image *img)
-{
-	int y, x;
-	unsigned char b;
-
-	for (y=0; y<img->h; y++) {
-		for (x=0; x<img->w/8; x++) {
-			for (b=0x80; b; b>>=1) {
-				if (img->image_data[y * img->w/8 + x] & b) {
-					fputs(" ", stdout);
-				} else {
-					fputs("\033[7m \033[0m", stdout);
-				}
-			}
-		}
-		fputs("\n", stdout);
-	}
-}
-
 int main(int argc, char **argv)
 {
 	int idx;
@@ -42,7 +23,7 @@ int main(int argc, char **argv)
 	}
 
 	printf("Image size: %d x %d\n", pmimg->w, pmimg->h);
-	displayImage(pmimg);
+	pm_displayImage(pmimg);
 	printf("\n\n");
 
 	pm_freeImage(pmimg);
