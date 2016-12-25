@@ -155,7 +155,7 @@ void pm_displayImage(struct pm_image *img)
 	}
 }
 
-int pm_appendToDirectory(const char *sdr_file, const char *shp_file, struct pm_image *image, char *name)
+int pm_appendToDirectory(const char *sdr_file, const char *shp_file, struct pm_image *image, const char *name)
 {
 	FILE *fptr_sdr = NULL, *fptr_shp = NULL;
 	unsigned char header[4];
@@ -168,20 +168,17 @@ int pm_appendToDirectory(const char *sdr_file, const char *shp_file, struct pm_i
 		return -1;
 	}
 
-	fptr_sdr = fopen(sdr_file, "wb");
+	fptr_sdr = fopen(sdr_file, "ab");
 	if (!fptr_sdr) {
 		perror(sdr_file);
 		goto err;
 	}
 
-	fptr_shp = fopen(shp_file, "wb");
+	fptr_shp = fopen(shp_file, "ab");
 	if (!fptr_shp) {
 		perror(shp_file);
 		goto err;
 	}
-
-	fseek(fptr_sdr, 0, SEEK_END);
-	fseek(fptr_shp, 0, SEEK_END);
 
 	/* Write to the SHP file */
 	header[0] = 0x0b;

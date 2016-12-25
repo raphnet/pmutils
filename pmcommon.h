@@ -22,7 +22,7 @@ struct pm_image *pm_loadPng(const char *pngfile);
 struct pm_image *pm_loadImage(const char *shapefile, int index);
 void pm_freeImage(struct pm_image *img);
 
-int pm_appendToDirectory(const char *sdr_file, const char *shp_file, struct pm_image *image, char *name);
+int pm_appendToDirectory(const char *sdr_file, const char *shp_file, struct pm_image *image, const char *name);
 
 void pm_displayImage(struct pm_image *img);
 

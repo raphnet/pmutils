@@ -1,2 +1,7 @@
 *.o
 *.swp
+*.SDR
+*.SHP
+pmshow
+pmdir
+pmappend
